@@ -1,0 +1,114 @@
+# More documentation about how to customize your build
+# can be found here:
+# https://docs.fastlane.tools
+fastlane_version "2.68.0"
+
+# This value helps us track success metrics for Fastfiles
+# we automatically generate. Feel free to remove this line
+# once you get things running smoothly!
+generated_fastfile_id "354ab528-6350-4ac8-965c-767781ff1f3d"
+
+default_platform :ios
+
+# Fastfile actions accept additional configuration, but
+# don't worry, fastlane will prompt you for required
+# info which you can add here later
+
+platform :ios do
+
+before_all do
+  #cocoapods
+end
+
+
+# DistributeTest Dev 配布用
+
+lane :dev do
+
+  sigh(
+      development: true,
+      app_identifier: "net.akym03.distribute.dev"
+  )
+
+  build_app(
+      scheme: "DistributeTest Dev",
+      configuration: "Debug",
+      output_directory: "build",
+      export_method: "development",
+      clean: true
+  )
+
+  # upload to DistributeTest by Crashlytics
+  crashlytics(
+      api_token: "",
+      build_secret: "",
+      notes: "fastlaneによる配布",
+      notifications: true,
+      emails: ['']
+  )
+
+end
+
+
+# DistributeTest Staging 配布用
+
+lane :staging do
+
+  sigh(
+      adhoc: true,
+      app_identifier: "net.akym03.distribute.staging"
+  )
+
+  build_app(
+      scheme: "DistributeTest Staging",
+      configuration: "Debug",
+      output_directory: "build",
+      export_method: "ad-hoc",
+      clean: true
+  )
+
+  # upload to DistributeTest by Crashlytics
+  crashlytics(
+      api_token: "",
+      build_secret: "",
+      notifications: true,
+      emails: [''],
+      notes: "fastlaneによる配布(Staging版)"
+  )
+
+end
+
+
+# DistributeTest Release 配布用
+
+lane :release do
+
+  sigh(
+      app_identifier: "net.akym03.distribute"
+  )
+
+  ipa = build_app(
+      scheme: "DistributeTest Release",
+      configuration: "Release",
+      output_directory: "build",
+      export_method: "app-store",
+      clean: true
+  )
+
+  # upload to DistributeTest by iTunes Connect
+  deliver(
+      ipa: ipa,
+      skip_binary_upload: false,
+      skip_screenshots: true,
+      skip_metadata: true
+  )
+
+end
+
+
+end
+
+
+
+
+
