@@ -40,11 +40,11 @@ lane :dev do
 
   # upload to DistributeTest by Crashlytics
   crashlytics(
-      api_token: "",
-      build_secret: "",
+      api_token: ENV['FABRIC_API_TOKEN'],
+      build_secret: ENV['FABRIC_BUILD_SECRET'],
       notes: "fastlaneによる配布",
       notifications: true,
-      emails: ['']
+      emails: [ ENV['FABRIC_NOTIFICATION_MAIL'] ]
   )
 
 end
@@ -69,10 +69,10 @@ lane :staging do
 
   # upload to DistributeTest by Crashlytics
   crashlytics(
-      api_token: "",
-      build_secret: "",
+      api_token: ENV['FABRIC_API_TOKEN'],
+      build_secret: ENV['FABRIC_BUILD_SECRET'],
       notifications: true,
-      emails: [''],
+      emails: [ ENV['FABRIC_NOTIFICATION_MAIL'] ],
       notes: "fastlaneによる配布(Staging版)"
   )
 

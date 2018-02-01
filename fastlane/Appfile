@@ -8,18 +8,18 @@ for_platform :ios do
 
 	for_lane :dev do
 		app_identifier "net.akym03.distribute.dev"
-		apple_id ""
+		apple_id ENV['FASTLANE_APPLE_ID']
 	end
 
 	for_lane :staging do
 		app_identifier "net.akym03.distribute.staging"
-		apple_id ""
+		apple_id ENV['FASTLANE_APPLE_ID']
 	end
 
 	for_lane :release do
 		team_id ""
 		app_identifier "net.akym03.distribute"
-		apple_id ""
+		apple_id ENV['FASTLANE_APPLE_ID']
 	end
 
 end

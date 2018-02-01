@@ -23,7 +23,7 @@
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
-		<string></string>
+		<string>${FABRIC_API_TOKEN}</string>
 		<key>Kits</key>
 		<array>
 			<dict>
