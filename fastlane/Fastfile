@@ -73,7 +73,7 @@ lane :staging do
       build_secret: ENV['FABRIC_BUILD_SECRET'],
       notifications: true,
       emails: [ ENV['FABRIC_NOTIFICATION_MAIL'] ],
-      notes: "fastlaneによる配布(Staging版)"
+      notes: ENV['RELEASE_NOTES_DESC']
   )
 
 end
