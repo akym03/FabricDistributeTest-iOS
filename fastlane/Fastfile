@@ -42,7 +42,7 @@ lane :dev do
   crashlytics(
       api_token: ENV['FABRIC_API_TOKEN'],
       build_secret: ENV['FABRIC_BUILD_SECRET'],
-      notes: "fastlaneによる配布",
+      notes: ENV['RELEASE_NOTES_DESC'],
       notifications: true,
       emails: [ ENV['FABRIC_NOTIFICATION_MAIL'] ]
   )
